@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Structure;
 use App\Models\Exam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StructureController extends Controller
 {
@@ -18,8 +19,8 @@ class StructureController extends Controller
         // return response()->json([
         //     'message'=>'PIPPO'
         // ]);
-
-        return Structure::select('id','name','region','city', 'phone')->paginate(1);
+        
+        return Structure::select('id','name','region','city', 'phone')->paginate(10);
     }
 
     /**
@@ -92,6 +93,20 @@ class StructureController extends Controller
      */
     public function show(Structure $structure)
     {
+        $structureId = $structure['id'];
+        $exams = Exam::all();
+        // $structureexams = DB::table("structure_exam")->get();
+
+        $structureexams = Exam::join("structure_exam", "exams.id", "=", "structure_exam.exam_id")
+                                        ->where("structure_exam.structure_id", "=", $structureId)
+                                        ->get();
+ 
+        return response()->json(
+            ['structure'=>$structure,
+            'exams'=>$exams,
+            'structureexams'=>$structureexams]
+        );
+
         return response()->json([
             'structure'=>$structure
         ]);
@@ -105,7 +120,15 @@ class StructureController extends Controller
      */
     public function edit(Structure $structure)
     {
-        //
+        $structure = Structure::all();
+        $exams = Exams::all();
+        $structureexams = DB::table('structure_structureexams')->get();
+         
+        return response()->json([
+            'structure'=>$structure],
+            ['exams'=>$exams],
+            ['structureexams'=>$structureexams
+        ]);
     }
 
     /**
@@ -160,32 +183,6 @@ class StructureController extends Controller
 
     public function getStructure()
     {
-        // Recupero dato form
-        // $search = $request->all();
 
-        // $data = Structure::paginate(3);
-
-        // $apartment = Apartment::find($apartmentdId);
-        // $exams = Exam::all();
-
-        // return Structure::select('id','name','region','city', 'phone')->get();
-
-
-        // // Recupero dottore
-        // $doctor = Doctor::where('specialization' ,'like', $search['search'])->orWhere('user_name','like',$search['search'])->get();
-
-        // // Arrai associativo
-        // $data = [
-        //     'doctor' => $doctor,
-        //     'search' => $search
-        // ];
-
-        // Reindirizzo pag con dati
-
-
-
-        // return response()->json([
-        //     'data'=>$data
-        // ]);
     }
 }

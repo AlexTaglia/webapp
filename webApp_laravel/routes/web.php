@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/structures', function (Request $request) {
-    $structures = Stucture::paginate(2);
+    $structures = Stucture::paginate(10);
     return $structures;
 });

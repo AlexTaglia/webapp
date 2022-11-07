@@ -92,7 +92,7 @@ class ExamController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'structure_id' => 'required',
+            'structure_id' => 'nullable',
         ]);
 
         try{
