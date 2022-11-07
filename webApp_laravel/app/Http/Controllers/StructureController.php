@@ -16,10 +16,6 @@ class StructureController extends Controller
      */
     public function index()
     {
-        // return response()->json([
-        //     'message'=>'PIPPO'
-        // ]);
-        
         return Structure::select('id','name','region','city', 'phone')->paginate(10);
     }
 
@@ -72,7 +68,6 @@ class StructureController extends Controller
             if(array_key_exists('sponsors',$data)){
                 $structure->sponsors()->sync($data['sponsors']);
             }
-            // Structure::create($request->post());
             
             return response()->json([
                 'message'=>'Structure created Successfully!!'
@@ -95,8 +90,6 @@ class StructureController extends Controller
     {
         $structureId = $structure['id'];
         $exams = Exam::all();
-        // $structureexams = DB::table("structure_exam")->get();
-
         $structureexams = Exam::join("structure_exam", "exams.id", "=", "structure_exam.exam_id")
                                         ->where("structure_exam.structure_id", "=", $structureId)
                                         ->get();

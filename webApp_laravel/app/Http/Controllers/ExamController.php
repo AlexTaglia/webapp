@@ -92,7 +92,6 @@ class ExamController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'structure_id' => 'nullable',
         ]);
 
         try{
@@ -100,7 +99,6 @@ class ExamController extends Controller
             $exam->fill($request->post())->update();
             $exam->save();
             
-
             return response()->json([
                 'message'=>'Exam Updated Successfully!!'
             ]);
