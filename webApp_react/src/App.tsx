@@ -12,11 +12,24 @@ import Edit from "./components/Structure/Edit";
 import CreateExam from "./components/Exams/CreateExam";
 import ListExam from "./components/Exams/ListExam";
 import EditExam from "./components/Exams/EditExam";
+import axios from "axios";
 
 
 function App() {
+
+//   const get = async () => {  
+
+//     await axios.get(`http://localhost:8000/api/structures/search`).then(({ data }) => {
+//         console.log("data")
+//         // navigate("/")
+//     }).catch(({ err }) => {
+//         console.log("error", { err })
+//     })
+// }
+
   return (<Router>
     <Navbar bg="primary">
+      {/* <button onClick={()=>get()}>GET</button> */}
       <Container>
         <Row>
           <Col xs={6}>

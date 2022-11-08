@@ -174,8 +174,18 @@ class StructureController extends Controller
 
     }
 
-    public function getStructure()
+    public function search()
+    // public function search(Request $request)
     {
+        $structures =  Structure::select("*")
+        ->where([
+            ["name", "LIKE", '%'.'struc'.'%'],
+        ])
+        ->get();
+        return response()->json([
+            'data'=>$structures
+        ]);
 
     }
+
 }

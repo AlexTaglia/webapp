@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StructureController;
 
 /*
@@ -18,7 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/structures', function (Request $request) {
-    $structures = Stucture::paginate(10);
-    return $structures;
-});
+Route::get('structures/search',[StructureController::class, 'search'])->name('structure.search');

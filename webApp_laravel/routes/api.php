@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -22,8 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::resource('structures',StructureController::class);
 Route::resource('exams',ExamController::class);
 Route::resource('sponsors',SponsorController::class);
-Route::get('structures/getStructures', [StructureController::class,  'getStructures']);
-

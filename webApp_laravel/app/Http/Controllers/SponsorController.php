@@ -14,7 +14,8 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        return Sponsor::select('id','duration')->get();
+        // TODO
+        // return Sponsor::select('id','duration')->get();
     }
 
     /**
@@ -35,22 +36,23 @@ class SponsorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'duration'=>'required',
-            'structure_id' => 'nullable',
-        ]);
+        // TODO
+        // $request->validate([
+        //     'duration'=>'required',
+        //     'structure_id' => 'nullable',
+        // ]);
 
-        try{
-            Sponsor::create($request->post());
-            return response()->json([
-                'message'=>'Sponsor created successfully!!'
-            ]);
-        }catch(\Exception $e){
-            \Log::error($e->getMessage());
-            return response()->json([
-                'message'=>'Something goes wrong while creating a sponsor!!'
-            ],500);
-        }
+        // try{
+        //     Sponsor::create($request->post());
+        //     return response()->json([
+        //         'message'=>'Sponsor created successfully!!'
+        //     ]);
+        // }catch(\Exception $e){
+        //     \Log::error($e->getMessage());
+        //     return response()->json([
+        //         'message'=>'Something goes wrong while creating a sponsor!!'
+        //     ],500);
+        // }
     }
 
     /**
@@ -61,9 +63,10 @@ class SponsorController extends Controller
      */
     public function show(Sponsor $sponsor)
     {
-        return response()->json([
-            'sponsor'=>$sponsor
-        ]);
+        // TODO
+        // return response()->json([
+        //     'sponsor'=>$sponsor
+        // ]);
     }
 
     /**
@@ -86,27 +89,28 @@ class SponsorController extends Controller
      */
     public function update(Request $request, Sponsor $sponsor)
     {
-        $request->validate([
-            'duration'=>'required',
-            'structure_id' => 'required',
-        ]);
+        // TODO
+        // $request->validate([
+        //     'duration'=>'required',
+        //     'structure_id' => 'required',
+        // ]);
 
-        try{
+        // try{
 
-            $exam->fill($request->post())->update();
-            $exam->save();
+        //     $exam->fill($request->post())->update();
+        //     $exam->save();
             
 
-            return response()->json([
-                'message'=>'Exam Updated Successfully!!'
-            ]);
+        //     return response()->json([
+        //         'message'=>'Exam Updated Successfully!!'
+        //     ]);
 
-        }catch(\Exception $e){
-            \Log::error($e->getMessage());
-            return response()->json([
-                'message'=>'Something goes wrong while updating a exam!!'
-            ],500);
-        }
+        // }catch(\Exception $e){
+        //     \Log::error($e->getMessage());
+        //     return response()->json([
+        //         'message'=>'Something goes wrong while updating a exam!!'
+        //     ],500);
+        // }
     }
 
     /**
@@ -122,55 +126,56 @@ class SponsorController extends Controller
 
     public function subscribe(Request $request, $id, $structuredId)
     {
-        $structure = Structure::find($structuredId);
-        $sponsors = Sponsor::all();
+        // TODO
+        // $structure = Structure::find($structuredId);
+        // $sponsors = Sponsor::all();
         
-        $payload = $request->input('payload', false);
-        $nonce = 'fake-valid-nonce';
+        // $payload = $request->input('payload', false);
+        // $nonce = 'fake-valid-nonce';
       
-        $duration = DB::table("sponsors")
-                    ->select("duration")
-                    ->where("id", "=", $id)
-                    ->get();
+        // $duration = DB::table("sponsors")
+        //             ->select("duration")
+        //             ->where("id", "=", $id)
+        //             ->get();
                     
-        $hours = $duration->first()->duration;  
+        // $hours = $duration->first()->duration;  
 
-        $now = date_create()->format('Y-m-d H:i:s');
+        // $now = date_create()->format('Y-m-d H:i:s');
 
-        $lastSponsorDate = DB::table('structure_sponsor')
-                            ->select('end_on')
-                            ->where('structure_id', '=', $structuredId)
-                            ->where('end_on', '>=', $now)
-                            ->orderBy('end_on', 'DESC')     
-                            ->limit(1)
-                            ->first();
+        // $lastSponsorDate = DB::table('structure_sponsor')
+        //                     ->select('end_on')
+        //                     ->where('structure_id', '=', $structuredId)
+        //                     ->where('end_on', '>=', $now)
+        //                     ->orderBy('end_on', 'DESC')     
+        //                     ->limit(1)
+        //                     ->first();
 
-        $countRowDb = DB::table('structure_sponsor')
-                        ->select('end_on')
-                        ->where('structure_id', '=', $structuredId)
-                        ->get()
-                        ->count();
+        // $countRowDb = DB::table('structure_sponsor')
+        //                 ->select('end_on')
+        //                 ->where('structure_id', '=', $structuredId)
+        //                 ->get()
+        //                 ->count();
         
-        if($countRowDb == 0 or $now > $lastSponsorDate->end_on){
-            $startDate = $now;
-        } else{
-            $startDate = $lastSponsorDate->end_on;
-        };
+        // if($countRowDb == 0 or $now > $lastSponsorDate->end_on){
+        //     $startDate = $now;
+        // } else{
+        //     $startDate = $lastSponsorDate->end_on;
+        // };
 
-        $end = date('Y-m-d H:i:s', strtotime("$startDate +{$hours} hours"));
+        // $end = date('Y-m-d H:i:s', strtotime("$startDate +{$hours} hours"));
 
-        if($result->success) {
+        // if($result->success) {
 
-            $structure = Structure::find($structuredId);
-            $structure->sponsor()->attach($id,[
-            'status' => true,
-            'started_on' => $startDate,
-            'end_on' => $end]); 
+        //     $structure = Structure::find($structuredId);
+        //     $structure->sponsor()->attach($id,[
+        //     'status' => true,
+        //     'started_on' => $startDate,
+        //     'end_on' => $end]); 
                         
-            return response()->json(['success' => true]); 
+        //     return response()->json(['success' => true]); 
             
-        } else {
-            return response()->json(['success' => false]);
-        }
+        // } else {
+        //     return response()->json(['success' => false]);
+        // }
     }
 }
