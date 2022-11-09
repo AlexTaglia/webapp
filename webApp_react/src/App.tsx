@@ -13,23 +13,13 @@ import CreateExam from "./components/Exams/CreateExam";
 import ListExam from "./components/Exams/ListExam";
 import EditExam from "./components/Exams/EditExam";
 import axios from "axios";
+import Search from "./components/Structure/Search";
 
 
 function App() {
 
-//   const get = async () => {  
-
-//     await axios.get(`http://localhost:8000/api/structures/search`).then(({ data }) => {
-//         console.log("data")
-//         // navigate("/")
-//     }).catch(({ err }) => {
-//         console.log("error", { err })
-//     })
-// }
-
   return (<Router>
     <Navbar bg="primary">
-      {/* <button onClick={()=>get()}>GET</button> */}
       <Container>
         <Row>
           <Col xs={6}>
@@ -55,6 +45,9 @@ function App() {
           <Link className='btn btn-secondary mb-2 float-end me-2' to={"/"}>
             Structures
           </Link>
+          <Link className='btn btn-secondary mb-2 float-end me-2' to={"/structure/search"}>
+            Search structure
+          </Link>
         </Col>
       </Row>
 
@@ -65,6 +58,7 @@ function App() {
         <Col md={12}>
           <Routes>
             <Route path="/structure/create" element={<Create />} />
+            <Route path="/structure/search" element={<Search />} />
             <Route path="/structure/edit/:id" element={<Edit />} />
             <Route path="/exam/create" element={<CreateExam />} />
             <Route path="/exam/list" element={<ListExam />} />

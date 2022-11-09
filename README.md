@@ -21,7 +21,7 @@ This repositories is composed by 2 folders
 
     php artisan key:generate
 
-* create an empty database and then in file .env just created add the database name DB_DATABASE=db_name ,
+* create an empty database (I used xamp) and then in file .env just created add the database name DB_DATABASE=db_name 
 
 * please check also DB_HOST, DB_PORT, DB_USERNAME, and DB_PASSWORD must match with your database credential
 
@@ -46,5 +46,5 @@ end finally open <http://localhost:3007/>
 
 ## Todo
 - edit of exam in structures
-- search result
+- search result (now filter only by region or city)
 - structure advertise

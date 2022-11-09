@@ -18,5 +18,3 @@ use App\Http\Controllers\StructureController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('structures/search',[StructureController::class, 'search'])->name('structure.search');

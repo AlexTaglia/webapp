@@ -174,14 +174,25 @@ class StructureController extends Controller
 
     }
 
-    public function search()
-    // public function search(Request $request)
+    public function search(Request $request)
     {
-        $structures =  Structure::select("*")
-        ->where([
-            ["name", "LIKE", '%'.'struc'.'%'],
-        ])
-        ->get();
+        $city = $request->input('city');
+        $region = $request->input('region');
+        $exam = $request->input('exam'); 
+
+        
+        if($city === NULL || $region === NULL){
+                $structures =  Structure::select("*")
+                ->where([
+                    ["city", "like", '%'.$city.'%'],
+                ])->where([
+                    ["region", "like", '%'.$region.'%'],
+                ])
+                ->get();
+            } else {
+                $structures =  Structure::select('id','name','region','city', 'phone');
+            } 
+
         return response()->json([
             'data'=>$structures
         ]);

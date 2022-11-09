@@ -27,3 +27,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('structures',StructureController::class);
 Route::resource('exams',ExamController::class);
 Route::resource('sponsors',SponsorController::class);
+
+Route::get('search',[StructureController::class, 'search'])->name('structures.search');

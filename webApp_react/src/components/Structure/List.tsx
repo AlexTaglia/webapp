@@ -35,24 +35,7 @@ export default function List() {
 
     return (
         <div className="container">
-            {/* <div className='row'>
-                <div className='col-12'>
-                    <div className='d-flex flex-column me-4'>
-                        <span style={{ fontSize: 14 }}>Full name</span>
-                        <div className='d-flex align-items-center position-relative my-1'>
-                            <input
-                                type='text'
-                                className='form-control form-control-solid w-250px ps-14'
-                                placeholder='Search name'
-                                value={searchFullName}
-                                onChange={(e) => setSearchFullName(e.target.value)}
-                            />
-                        </div>
-                    </div>
 
-
-                </div>
-            </div> */}
             <div className="row">
                 <div className="col-12">
                     <div className="card card-body">

@@ -25,7 +25,6 @@ export default function ListExams() {
 
 
     const deleteProduct = async (id: any) => {
-
         await axios.delete(`http://localhost:8000/api/exams/${id}`).then(({ data }) => {
             fetchExams()
         }).catch(({ response: { data } }) => {
